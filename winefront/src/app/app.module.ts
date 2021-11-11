@@ -9,6 +9,7 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CrudService } from './crud.service';
 import { HttpClientModule } from '@angular/common/http';
+import { WineDetailComponent } from './wine-detail/wine-detail.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     WinesComponent,
     CartComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    WineDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,41 @@
 <div class="container">
   <div class="hero"></div>
-  <div class="mt-4">
+
+  <div class="mt-4 mb-5">
     <h5>Available Wines</h5>
+
+
+    <ng-container *ngIf="wineList">
+      <div class="container">
+        <div class="row" data-masonry='{"percentPosition": true }'>
+
+          <div class="col-sm-4 col-lg-3 col-6 mb-2" *ngFor="let wine of wineList;">
+            <div class="card wine-card">
+              <img class="card-image card-img-top" src="http://127.0.0.1:8000{{ wine.image }}">
+              <div class="card-body">
+                <h5 class="card-title">{{ wine.name }}</h5>
+
+                <a class="btn btn-secondary btn-sm" style="margin-right: 1.8px" [routerLink]="['wine/', wine.id]">Details</a>
+                <a class="btn btn-primary btn-sm">Add To Cart</a>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="!wineList">
+      <div class="alert alert-secondary" role="alert">
+        <p>No wines available yet.  </p>
+      </div>
+    </ng-container>
+
+    <router-outlet></router-outlet>
+
   </div>
+
+
 </div>

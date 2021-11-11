@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CrudService } from '../crud.service';
 
 @Component({
   selector: 'app-wines',
@@ -7,9 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WinesComponent implements OnInit {
 
-  constructor() { }
+  wineList:any=[]
+  cart:any=[]
+  cartItems:any=[]
+
+
+  constructor(private crud: CrudService) { }
 
   ngOnInit(): void {
+    this.wineList=this.getWineList();
+  }
+
+  getWineList(){
+    this.crud.getWinesAll().subscribe(
+      data => {
+        this.wineList = data
+      }
+    );
+  }
+
+  getCart(){
+
+  }
+
+  getCartItems(){
+
   }
 
 }
