@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CrudService } from '../crud.service';
+import { product } from './wine-detail';
 
 @Component({
   selector: 'app-wine-detail',
@@ -10,7 +11,9 @@ import { CrudService } from '../crud.service';
 export class WineDetailComponent implements OnInit {
 
   // contain product
-  product: any =[]
+  product!: product[];
+
+  data:any
 
   // to contain id
   prd_id:any = null
@@ -18,13 +21,13 @@ export class WineDetailComponent implements OnInit {
   constructor(private crud:CrudService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.prd_id = this.route.snapshot.paramMap.get('id');
-    this.product = this.getWineDetails()
-  }
+    this.prd_id = this.route.snapshot.paramMap.get('id')
 
-  // get product by passing id to service
-  getWineDetails(){
-    this.crud.getWine
+    this.data = this.crud.getWine(this.prd_id).subscribe(
+      data => {
+        this.product = data
+      }
+    )
   }
 
 }

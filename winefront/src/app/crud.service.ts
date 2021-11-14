@@ -12,10 +12,12 @@ export class CrudService {
 
   constructor(private http: HttpClient) { }
 
+  // get all wines available
   getWinesAll():Observable<any>{
     return this.http.get(this.APIurl + 'wines/get/all');
   }
 
+  //  get wine by passing id
   getWine(id: number):Observable<any>{
     return this.http.get(this.APIurl + 'wines/get/' + id);
   }
