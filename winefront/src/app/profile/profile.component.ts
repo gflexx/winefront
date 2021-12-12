@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CrudService } from '../crud.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class ProfileComponent implements OnInit {
 
   WineList:any = [];
 
-  constructor(private crud:CrudService) { }
+  constructor(private crud:CrudService, private router:Router) { }
 
   ngOnInit(): void {
     this.getWineList();
@@ -20,14 +21,11 @@ export class ProfileComponent implements OnInit {
     this.crud.getWinesAll().subscribe(
       data => {
         this.WineList = data;
+      },
+      error => {
+        console.log(error);
       }
     )
   }
-
-  deleteWine(id:number):void{
-    console.log(id);
-  }
-
-
 
 }

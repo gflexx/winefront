@@ -1,5 +1,5 @@
 <div class="container">
-  <h4 class="text-center">Update and Delete Wine</h4>
+  <h4 class="text-center">Create, Update and Delete Wine</h4>
   <div *ngIf="!WineList">
     <div class="alert alert-secondary" role="alert">
       <p>Wines not available yet</p>
@@ -7,7 +7,8 @@
   </div>
 
   <div *ngIf="WineList">
-    <p>Select to Update</p>
+    <a class="btn btn-success mb-5">Add Wine</a>
+    <p>Select to Update or Delete</p>
     <hr>
     <div *ngFor="let wine of WineList">
       <div class="row mt-2">
@@ -17,17 +18,16 @@
         <div class="col-3 text-center ">
           <span class="align-middle">{{ wine.name }}</span>
         </div>
-        <div class="col-3">
-          <button class="btn btn-secondary">Update</button>
+        <div class="col-3 text-center">
+          {{ wine.quantity }}
         </div>
         <div class="col-3">
-          <button
-            class="btn btn-danger"
-            (click)="deleteWine(wine.id)"
-          >Delete</button>
+          <a class="btn btn-secondary" [routerLink]="['/wine/edit/', wine.id]">Update / Delete</a>
         </div>
       </div>
     </div>
+
+    <router-outlet></router-outlet>
 
   </div>
 </div>

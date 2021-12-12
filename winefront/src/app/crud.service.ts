@@ -23,4 +23,12 @@ export class CrudService {
     return this.http.get(this.APIurl + 'wines/get/' + id);
   }
 
+  deleteWine(id: number):Observable<any>{
+    return this.http.delete(this.APIurl + 'wines/update/destroy/' + id);
+  }
+
+  updateWine(id: number, data: any):Observable<any>{
+    return this.http.put(this.APIurl + 'wines/update/destroy/' + id, data);
+  }
+
 }

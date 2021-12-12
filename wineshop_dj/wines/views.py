@@ -25,7 +25,17 @@ def get_wine(request, id):
     wine_serializer = WineSerializer(wine)
     return Response(wine_serializer.data)
 
-class UpdateDestroyApi(generics.GenericAPIView, mixins.DestroyModelMixin, mixins.UpdateModelMixin):
+@api_view(['PUT', 'DELETE'])
+def update_destroy(request, id):
+    wine = Wine.objects.filter(id=id).first()
+    if request.method == 'PUT':
+        wine_serializer = WineSerializer.update()
+    elif request.method == 'DELETE':
+        wine_serializer = WineSerializer.delete(wine)
+    else:
+        pass
+
+class UpdateDestroyApi(mixins.DestroyModelMixin, mixins.UpdateModelMixin, generics.GenericAPIView):
     serializer_class = WineSerializer
     queryset = Wine.objects.all()
     lookup_field = 'id'

@@ -11,6 +11,8 @@ import { CrudService } from './crud.service';
 import { HttpClientModule } from '@angular/common/http';
 import { WineDetailComponent } from './wine-detail/wine-detail.component';
 import { ProfileComponent } from './profile/profile.component';
+import { WineEditComponent } from './wine-edit/wine-edit.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,12 +22,14 @@ import { ProfileComponent } from './profile/profile.component';
     CartComponent,
     CheckoutComponent,
     WineDetailComponent,
-    ProfileComponent
+    ProfileComponent,
+    WineEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [CrudService],
   bootstrap: [AppComponent]

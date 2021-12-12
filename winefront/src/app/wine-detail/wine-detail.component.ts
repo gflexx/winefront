@@ -26,7 +26,6 @@ export class WineDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getWine(this.route.snapshot.params.id);
-    console.log(this.currentWine.id);
   }
 
   getWine(id: number): void{
