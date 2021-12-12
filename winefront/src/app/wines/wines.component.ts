@@ -22,7 +22,8 @@ export class WinesComponent implements OnInit {
   getWineList(){
     this.crud.getWinesAll().subscribe(
       data => {
-        this.wineList = data
+        console.log(data)
+        this.wineList = data;
       }
     );
   }

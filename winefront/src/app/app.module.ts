@@ -10,6 +10,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { CrudService } from './crud.service';
 import { HttpClientModule } from '@angular/common/http';
 import { WineDetailComponent } from './wine-detail/wine-detail.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { WineDetailComponent } from './wine-detail/wine-detail.component';
     WinesComponent,
     CartComponent,
     CheckoutComponent,
-    WineDetailComponent
+    WineDetailComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

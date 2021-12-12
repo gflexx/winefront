@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
+import { Wine } from './wine.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class CrudService {
   }
 
   //  get wine by passing id
-  getWine(id: number):Observable<any>{
+  getWine(id: number):Observable<Wine>{
     return this.http.get(this.APIurl + 'wines/get/' + id);
   }
 

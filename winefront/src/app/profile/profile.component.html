@@ -1,0 +1,33 @@
+<div class="container">
+  <h4 class="text-center">Update and Delete Wine</h4>
+  <div *ngIf="!WineList">
+    <div class="alert alert-secondary" role="alert">
+      <p>Wines not available yet</p>
+    </div>
+  </div>
+
+  <div *ngIf="WineList">
+    <p>Select to Update</p>
+    <hr>
+    <div *ngFor="let wine of WineList">
+      <div class="row mt-2">
+        <div class="col-3 text-center">
+          <img src="http://localhost:8000{{ wine.image }}" alt="" class="wine-img">
+        </div>
+        <div class="col-3 text-center ">
+          <span class="align-middle">{{ wine.name }}</span>
+        </div>
+        <div class="col-3">
+          <button class="btn btn-secondary">Update</button>
+        </div>
+        <div class="col-3">
+          <button
+            class="btn btn-danger"
+            (click)="deleteWine(wine.id)"
+          >Delete</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

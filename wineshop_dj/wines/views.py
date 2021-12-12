@@ -23,3 +23,12 @@ def get_wine(request, id):
     wine = Wine.objects.filter(id=id).first()
     wine_serializer = WineSerializer(wine)
     return Response(wine_serializer.data)
+
+@api_view(['PUT', 'DELETE'])
+def delete_wine(request, id):
+    wine = Wine.objects.filter(id=id).first()
+    if request.method is 'PUT':
+        pass
+    elif request.method is 'DELETE':
+        pass
+
