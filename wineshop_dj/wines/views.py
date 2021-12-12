@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+from rest_framework import mixins, generics
 from rest_framework.decorators import api_view
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
@@ -24,11 +25,8 @@ def get_wine(request, id):
     wine_serializer = WineSerializer(wine)
     return Response(wine_serializer.data)
 
-@api_view(['PUT', 'DELETE'])
-def delete_wine(request, id):
-    wine = Wine.objects.filter(id=id).first()
-    if request.method is 'PUT':
-        pass
-    elif request.method is 'DELETE':
-        pass
+class UpdateDestroyApi(generics.GenericAPIView, mixins.DestroyModelMixin, mixins.UpdateModelMixin):
+    serializer_class = WineSerializer
+    queryset = Wine.objects.all()
+    lookup_field = 'id'
 
