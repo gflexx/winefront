@@ -31,4 +31,8 @@ export class CrudService {
     return this.http.put(this.APIurl + 'wines/update/destroy/' + id, data);
   }
 
+  createWine(data: any):Observable<any>{
+    return this.http.post(this.APIurl + 'wines/create', data);
+  }
+
 }

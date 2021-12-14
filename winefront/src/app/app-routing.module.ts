@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './cart/cart.component';
 import { ProfileComponent } from './profile/profile.component';
+import { WineCreateComponent } from './wine-create/wine-create.component';
 import { WineDetailComponent } from './wine-detail/wine-detail.component';
 import { WineEditComponent } from './wine-edit/wine-edit.component';
 import { WinesComponent } from './wines/wines.component';
@@ -16,6 +17,10 @@ const routes: Routes = [
     component: WineDetailComponent
   },
   {
+    path: 'wines/create',
+    component: WineCreateComponent
+  },
+  {
     path: 'cart',
     component: CartComponent
   },
@@ -26,7 +31,8 @@ const routes: Routes = [
   {
     path: 'wine/edit/:id',
     component: WineEditComponent
-  }
+  },
+
 ];
 
 @NgModule({

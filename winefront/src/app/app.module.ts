@@ -13,6 +13,7 @@ import { WineDetailComponent } from './wine-detail/wine-detail.component';
 import { ProfileComponent } from './profile/profile.component';
 import { WineEditComponent } from './wine-edit/wine-edit.component';
 import { FormsModule } from '@angular/forms';
+import { WineCreateComponent } from './wine-create/wine-create.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     CheckoutComponent,
     WineDetailComponent,
     ProfileComponent,
-    WineEditComponent
+    WineEditComponent,
+    WineCreateComponent
   ],
   imports: [
     BrowserModule,
