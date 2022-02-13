@@ -1,16 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 
 from rest_framework import mixins, generics
 from rest_framework.decorators import api_view
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
+from rest_framework import status
 
 from .models import Wine
 from .serializers import WineSerializer
 
-# get all wines
 @api_view(['GET'])
 def get_wines(request):
+    '''
+        get all wines
+    '''
     wines = Wine.objects.all()
     wine_serializer = WineSerializer(
         wines,
@@ -18,25 +21,34 @@ def get_wines(request):
     )
     return Response(wine_serializer.data)
 
-# get specific wine using id
 @api_view(['GET'])
 def get_wine(request, id):
-    wine = Wine.objects.filter(id=id).first()
+    '''
+        get specific wine using id
+    '''
+    wine = get_object_or_404(Wine, id=id)
     wine_serializer = WineSerializer(wine)
     return Response(wine_serializer.data)
 
 @api_view(['PUT', 'DELETE'])
 def update_destroy(request, id):
-    wine = Wine.objects.filter(id=id).first()
+    '''
+        update or destroy wine
+    '''
+    wine = get_object_or_404(Wine, id=id)
+    wine_serializer = WineSerializer(wine)
+    if not wine_serializer.is_valid():
+        return Response(
+            wine_serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
     if request.method == 'PUT':
-        wine_serializer = WineSerializer.update()
+        wine_serializer.update(
+            data=request.data
+        )
+        status = status.HTTP_202_ACCEPTED
     elif request.method == 'DELETE':
         wine_serializer = WineSerializer.delete(wine)
-    else:
-        pass
-
-class UpdateDestroyApi(mixins.DestroyModelMixin, mixins.UpdateModelMixin, generics.GenericAPIView):
-    serializer_class = WineSerializer
-    queryset = Wine.objects.all()
-    lookup_field = 'id'
-
+        status = status.HTTP_204_NO_CONTENT
+    data = wine_serializer.data
+    return Response(data, status=status)
